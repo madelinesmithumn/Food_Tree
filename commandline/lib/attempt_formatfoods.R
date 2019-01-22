@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 
+#chmod +x attempt_formatfoods.R
+
 #probably delete this later
 #input_fn <- read.table('~/GitHubnotZip/GitHub/Food_Tree/R/data/NHANES/processed/foodcodes.txt', fill = TRUE)
 
@@ -8,7 +10,7 @@
 suppressPackageStartupMessages(require(optparse))
 
 #usage will pop up to help the person, get the info for this from the README for Food Tree
-usage = 'Food tree is the best, get four for the price of one. See our brief hour infomercial for more.'
+usage = 'Used to format the food file inputted by the user.'
 
 #make option list 
 #To do: find characteristics "type" of data input (ex: numeric vs. character)
@@ -24,11 +26,11 @@ option_list = list(
 #this line is present in splinectomer and I'm not sure what it does
 opt = parse_args(OptionParser(usage=usage, option_list=option_list))
 
-if (is.na(opt$input_fn) | (is.na(opt$output_fn))) {
+if (is.na(opt$input_fn)) {
   stop('Missing data to be formatted')
 }
 
-foodcodes = opt$input_fn
+input_fn = opt$input_fn
 output_fn = opt$output_fn
 
 format.foods <- function(input_fn, output_fn, dedupe=T)
